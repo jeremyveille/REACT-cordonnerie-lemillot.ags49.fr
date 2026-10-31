@@ -1,0 +1,54 @@
+# ==========================================
+# Fichiers sensibles et identifiants
+# ==========================================
+wp-config.php
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# ==========================================
+# Bases de données & gros fichiers / archives
+# (Le fichier ags491473278_2mvaqx.sql fait 147 Mo, GitHub bloque > 100 Mo)
+# ==========================================
+*.sql
+*.sql.gz
+*.sqlite
+*.tar.gz
+*.zip
+*.7z
+
+# ==========================================
+# Node / React / Frontend
+# ==========================================
+node_modules/
+dist/
+build/
+.npm
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ==========================================
+# WordPress (caches, uploads temporaires)
+# ==========================================
+wp-content/cache/
+wp-content/upgrade/
+wp-content/backups/
+wp-content/advanced-cache.php
+wp-content/wp-cache-config.php
+
+# ==========================================
+# Fichiers système & IDE
+# ==========================================
+.DS_Store
+Thumbs.db
+Desktop.ini
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.ftpquota
+*.log
