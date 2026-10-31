@@ -41,6 +41,14 @@ wp-content/advanced-cache.php
 wp-content/wp-cache-config.php
 
 # ==========================================
+# Firebase
+# ==========================================
+.firebase/
+firebase-debug.log*
+firestore-debug.log*
+ui-debug.log*
+
+# ==========================================
 # Fichiers système & IDE
 # ==========================================
 .DS_Store
