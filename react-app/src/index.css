@@ -1,0 +1,2442 @@
+/* ==========================================================================
+   Cordonnerie Le Millot — Design System & Global Styles
+   Strict Pure Vanilla CSS (User Override: No Tailwind, Pure CSS only)
+   ========================================================================== */
+
+@import "@measured/puck/puck.css";
+
+:root {
+  /* Brand Color Palette */
+  --cordo-chocolate: #715839;
+  --cordo-caramel: #C7804A;
+  --cordo-gold: #D8960C;
+  --cordo-yellow: #E5E000;
+  --cordo-green: #1B6C30;
+  --cordo-red: #FA2D2D;
+  --cordo-dark: #3d424a;
+  --cordo-bg: #FCFCFC;
+  --cordo-cream: #F8F5F0;
+  --cordo-border: #E5DCD1;
+  --cordo-muted: #6B7280;
+  --cordo-white: #FFFFFF;
+
+  /* Typography */
+  --font-title: 'Audiowide', cursive, -apple-system, sans-serif;
+  --font-serif: 'Roboto Slab', Georgia, serif;
+  --font-body: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  /* Retro 3D Shadows */
+  --shadow-cordo: 7px 7px 0px 0px var(--cordo-chocolate);
+  --shadow-cordo-gold: 7px 7px 0px 0px var(--cordo-gold);
+  --shadow-cordo-caramel: 7px 7px 0px 0px var(--cordo-caramel);
+  --shadow-cordo-sm: 3px 3px 0px 0px var(--cordo-chocolate);
+  --shadow-cordo-inset: inset 2px 2px 0px 0px rgba(0, 0, 0, 0.2);
+  --shadow-soft: 0 4px 20px rgba(113, 88, 57, 0.12);
+
+  /* Transitions */
+  --transition-fast: 0.15s ease-in-out;
+  --transition-base: 0.25s ease-in-out;
+  --transition-smooth: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+}
+
+/* --------------------------------------------------------------------------
+   CSS Reset & Base Standards
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--cordo-bg);
+  color: var(--cordo-dark);
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+/* --------------------------------------------------------------------------
+   Typography Hierarchy
+   -------------------------------------------------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-title);
+  color: var(--cordo-chocolate);
+  line-height: 1.25;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.75rem;
+}
+
+h1 { font-size: clamp(1.8rem, 4vw, 2.75rem); }
+h2 { font-size: clamp(1.5rem, 3vw, 2.25rem); }
+h3 { font-size: clamp(1.25rem, 2.2vw, 1.75rem); }
+h4 { font-size: 1.25rem; }
+h5 { font-size: 1.1rem; }
+h6 { font-size: 1rem; }
+
+p {
+  margin-bottom: 1rem;
+}
+
+.font-title { font-family: var(--font-title); }
+.font-serif { font-family: var(--font-serif); }
+.font-body { font-family: var(--font-body); }
+
+/* --------------------------------------------------------------------------
+   Brand Colors Utility Classes
+   -------------------------------------------------------------------------- */
+.text-chocolate { color: var(--cordo-chocolate); }
+.text-caramel { color: var(--cordo-caramel); }
+.text-gold { color: var(--cordo-gold); }
+.text-yellow { color: var(--cordo-yellow); }
+.text-green { color: var(--cordo-green); }
+.text-red { color: var(--cordo-red); }
+.text-dark { color: var(--cordo-dark); }
+.text-muted { color: var(--cordo-muted); }
+.text-white { color: var(--cordo-white); }
+
+.bg-chocolate { background-color: var(--cordo-chocolate); color: var(--cordo-white); }
+.bg-caramel { background-color: var(--cordo-caramel); color: var(--cordo-white); }
+.bg-gold { background-color: var(--cordo-gold); color: var(--cordo-white); }
+.bg-yellow { background-color: var(--cordo-yellow); color: var(--cordo-dark); }
+.bg-green { background-color: var(--cordo-green); color: var(--cordo-white); }
+.bg-red { background-color: var(--cordo-red); color: var(--cordo-white); }
+.bg-cream { background-color: var(--cordo-cream); }
+.bg-white { background-color: var(--cordo-white); }
+
+/* --------------------------------------------------------------------------
+   Retro 3D Shadows & Borders
+   -------------------------------------------------------------------------- */
+.shadow-cordo {
+  box-shadow: var(--shadow-cordo);
+  border: 2px solid var(--cordo-chocolate);
+}
+
+.shadow-cordo-gold {
+  box-shadow: var(--shadow-cordo-gold);
+  border: 2px solid var(--cordo-gold);
+}
+
+.shadow-cordo-sm {
+  box-shadow: var(--shadow-cordo-sm);
+  border: 1.5px solid var(--cordo-chocolate);
+}
+
+.shadow-cordo-hover {
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.shadow-cordo-hover:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 9px 9px 0px 0px var(--cordo-chocolate);
+}
+
+.shadow-cordo-hover:active {
+  transform: translate(2px, 2px);
+  box-shadow: 3px 3px 0px 0px var(--cordo-chocolate);
+}
+
+/* --------------------------------------------------------------------------
+   Container & Grid Layouts
+   -------------------------------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: 1140px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.container-narrow {
+  width: 100%;
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+.grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+@media (max-width: 1024px) {
+  .grid-cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid-cols-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 680px) {
+  .grid-cols-4, .grid-cols-3, .grid-cols-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.items-center { align-items: center; }
+.items-start { align-items: flex-start; }
+.items-end { align-items: flex-end; }
+.justify-between { justify-content: space-between; }
+.justify-center { justify-content: center; }
+.justify-end { justify-content: flex-end; }
+.flex-wrap { flex-wrap: wrap; }
+.flex-1 { flex: 1 1 0%; }
+.gap-1 { gap: 0.25rem; }
+.gap-2 { gap: 0.5rem; }
+.gap-3 { gap: 0.75rem; }
+.gap-4 { gap: 1rem; }
+.gap-6 { gap: 1.5rem; }
+.gap-8 { gap: 2rem; }
+
+/* --------------------------------------------------------------------------
+   Buttons System
+   -------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-title);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.btn-primary {
+  background-color: var(--cordo-chocolate);
+  color: var(--cordo-white);
+  border-color: var(--cordo-chocolate);
+  box-shadow: 4px 4px 0px 0px #3f311f;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #5c472d;
+  transform: translate(-1px, -1px);
+  box-shadow: 6px 6px 0px 0px #3f311f;
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px 0px #3f311f;
+}
+
+.btn-secondary {
+  background-color: var(--cordo-caramel);
+  color: var(--cordo-white);
+  border-color: var(--cordo-caramel);
+  box-shadow: 4px 4px 0px 0px var(--cordo-chocolate);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: #b5713c;
+  transform: translate(-1px, -1px);
+  box-shadow: 6px 6px 0px 0px var(--cordo-chocolate);
+}
+
+.btn-gold {
+  background-color: var(--cordo-gold);
+  color: var(--cordo-white);
+  border-color: var(--cordo-gold);
+  box-shadow: 4px 4px 0px 0px #9f6c03;
+}
+
+.btn-gold:hover:not(:disabled) {
+  background-color: #c28507;
+  transform: translate(-1px, -1px);
+  box-shadow: 6px 6px 0px 0px #9f6c03;
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--cordo-chocolate);
+  border-color: var(--cordo-chocolate);
+  box-shadow: 3px 3px 0px 0px var(--cordo-chocolate);
+}
+
+.btn-outline:hover:not(:disabled) {
+  background-color: var(--cordo-chocolate);
+  color: var(--cordo-white);
+}
+
+.btn-danger {
+  background-color: var(--cordo-red);
+  color: var(--cordo-white);
+  border-color: var(--cordo-red);
+  box-shadow: 3px 3px 0px 0px #9c1515;
+}
+
+.btn-danger:hover:not(:disabled) {
+  background-color: #df1f1f;
+}
+
+.btn-sm {
+  padding: 0.4rem 0.85rem;
+  font-size: 0.8rem;
+}
+
+.btn-lg {
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+}
+
+/* --------------------------------------------------------------------------
+   Badges, Pills & Indicators
+   -------------------------------------------------------------------------- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.badge-published {
+  background-color: #E8F5E9;
+  color: var(--cordo-green);
+  border: 1px solid #A5D6A7;
+}
+
+.badge-draft {
+  background-color: #FFF9C4;
+  color: #B78103;
+  border: 1px solid #FFE082;
+}
+
+.badge-modified {
+  background-color: #E3F2FD;
+  color: #1565C0;
+  border: 1px solid #90CAF9;
+}
+
+/* --------------------------------------------------------------------------
+   Cards, Panels & Containers
+   -------------------------------------------------------------------------- */
+.cordo-card {
+  background: var(--cordo-white);
+  border: 2px solid var(--cordo-chocolate);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-cordo);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.cordo-card-cream {
+  background: var(--cordo-cream);
+  border: 2px solid var(--cordo-border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   Form Controls
+   -------------------------------------------------------------------------- */
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 0.4rem;
+  color: var(--cordo-dark);
+}
+
+.form-input, .form-textarea, .form-select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--cordo-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--cordo-white);
+  color: var(--cordo-dark);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.form-input:focus, .form-textarea:focus, .form-select:focus {
+  outline: none;
+  border-color: var(--cordo-caramel);
+  box-shadow: 0 0 0 3px rgba(199, 128, 74, 0.2);
+}
+
+/* --------------------------------------------------------------------------
+   Admin Dashboard & Layout Styles
+   -------------------------------------------------------------------------- */
+.admin-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #F4F1EA;
+}
+
+.admin-nav {
+  background: var(--cordo-chocolate);
+  color: var(--cordo-white);
+  padding: 0.85rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 3px solid var(--cordo-gold);
+}
+
+.admin-main {
+  flex: 1;
+  padding: 2rem 1.5rem;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--cordo-white);
+  border: 2px solid var(--cordo-chocolate);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-cordo-sm);
+}
+
+.admin-table th {
+  background: var(--cordo-cream);
+  color: var(--cordo-chocolate);
+  font-family: var(--font-title);
+  font-size: 0.85rem;
+  text-align: left;
+  padding: 1rem;
+  border-bottom: 2px solid var(--cordo-chocolate);
+}
+
+.admin-table td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--cordo-border);
+  vertical-align: middle;
+}
+
+.admin-table tr:last-child td {
+  border-bottom: none;
+}
+
+.admin-table tr:hover td {
+  background-color: #FAF8F5;
+}
+
+/* --------------------------------------------------------------------------
+   Public Site Layout (Header & Footer)
+   -------------------------------------------------------------------------- */
+.public-top-bar {
+  background-color: #4D3C27;
+  color: #F8F5F0;
+  padding: 0.45rem 1rem;
+  font-size: 0.825rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.public-top-bar a {
+  color: inherit;
+  transition: color var(--transition-fast);
+}
+
+.public-top-bar a:hover {
+  color: var(--cordo-yellow);
+}
+
+.top-bar-link {
+  color: inherit;
+  transition: color var(--transition-fast);
+}
+
+.top-bar-link:hover {
+  color: var(--cordo-yellow);
+}
+
+.top-bar-admin {
+  color: var(--cordo-gold);
+  transition: color var(--transition-fast);
+}
+
+.top-bar-admin:hover {
+  color: var(--cordo-yellow);
+}
+
+.public-header {
+  background-color: var(--cordo-white);
+  border-bottom: 3px solid var(--cordo-chocolate);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.public-footer {
+  background-color: #2F2418;
+  color: #ECE5DB;
+  border-top: 5px solid var(--cordo-gold);
+  padding-top: 3.5rem;
+  padding-bottom: 2rem;
+  margin-top: 4rem;
+}
+
+.public-footer h4 {
+  color: var(--cordo-gold);
+  font-size: 1.15rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 2px solid rgba(216, 150, 12, 0.3);
+  padding-bottom: 0.5rem;
+}
+
+.public-footer a:hover {
+  color: var(--cordo-yellow);
+  text-decoration: underline;
+}
+
+/* --------------------------------------------------------------------------
+   Interactive Components (Tabs, Accordions, Hours)
+   -------------------------------------------------------------------------- */
+.hours-badge-open {
+  background-color: var(--cordo-green);
+  color: white;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 0.75rem;
+}
+
+.hours-badge-closed {
+  background-color: var(--cordo-red);
+  color: white;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 0.75rem;
+}
+
+/* --------------------------------------------------------------------------
+   Puck Editor Fullscreen Scaffolding
+   -------------------------------------------------------------------------- */
+.puck-editor-wrapper {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  background: #f7f7f8;
+  z-index: 100;
+}
+
+.puck-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 1.25rem;
+  background: var(--cordo-chocolate);
+  color: white;
+  border-bottom: 2px solid var(--cordo-gold);
+}
+
+
+/* --------------------------------------------------------------------------
+   Puck Widgets & Pure CSS Interactive Styling (Milestone 3)
+   -------------------------------------------------------------------------- */
+
+/* Responsive Containers */
+.container-full {
+  width: 100%;
+  max-width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  box-sizing: border-box;
+}
+
+/* Vertical Spacer */
+.puck-vertical-spacer {
+  height: var(--spacer-h-desktop, 30px);
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .puck-vertical-spacer {
+    height: var(--spacer-h-mobile, 20px);
+  }
+}
+
+/* Custom Divider */
+.puck-custom-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1.5rem auto;
+}
+
+.divider-line {
+  height: 0;
+}
+
+.divider-diamond {
+  color: var(--cordo-gold);
+  font-size: 1.1rem;
+}
+
+/* Heading Block 3D Shadow */
+.puck-heading-block h1,
+.puck-heading-block h2,
+.puck-heading-block h3,
+.puck-heading-block h4 {
+  word-break: break-word;
+}
+
+/* Rich Text Block */
+.puck-richtext-block a {
+  color: var(--cordo-caramel);
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.puck-richtext-block a:hover {
+  color: var(--cordo-gold);
+}
+
+.richtext-html-body ul, .richtext-html-body ol {
+  padding-left: 1.5rem;
+  margin: 1rem 0;
+}
+
+.richtext-html-body li {
+  margin-bottom: 0.5rem;
+}
+
+/* Image Block Lightbox */
+.puck-lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.88);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1.5rem;
+  backdrop-filter: blur(4px);
+}
+
+.lightbox-content-box,
+.gallery-lightbox-modal {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-image {
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  border: 3px solid var(--cordo-gold);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+}
+
+.lightbox-caption {
+  color: white;
+  font-style: italic;
+  font-size: 0.95rem;
+  margin-top: 0.75rem;
+  text-align: center;
+}
+
+.lightbox-close-btn {
+  position: absolute;
+  top: -45px;
+  right: 0;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition-fast);
+}
+
+.lightbox-close-btn:hover {
+  transform: scale(1.15);
+  color: var(--cordo-yellow);
+}
+
+/* Media Gallery */
+.puck-gallery-grid {
+  display: grid;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.gallery-grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.gallery-grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.gallery-grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 992px) {
+  .gallery-grid-3,
+  .gallery-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 540px) {
+  .gallery-grid-2,
+  .gallery-grid-3,
+  .gallery-grid-4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.gallery-item-card {
+  border: 2px solid var(--cordo-chocolate);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 4px 4px 0px 0px var(--cordo-chocolate);
+  background: white;
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.gallery-item-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 6px 6px 0px 0px var(--cordo-gold);
+}
+
+.gallery-thumbnail-wrapper {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background-color: #2F2418;
+}
+
+.gallery-thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.gallery-item-card:hover .gallery-thumbnail {
+  transform: scale(1.05);
+}
+
+.gallery-overlay-hint {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(113, 88, 57, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.gallery-item-card:hover .gallery-overlay-hint {
+  opacity: 1;
+}
+
+.gallery-item-info {
+  padding: 0.75rem 1rem;
+}
+
+.gallery-item-title {
+  font-family: var(--font-title);
+  font-size: 0.95rem;
+  color: var(--cordo-chocolate);
+}
+
+.gallery-item-caption {
+  font-size: 0.8rem;
+  color: var(--cordo-muted);
+  margin-top: 0.25rem;
+}
+
+.gallery-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(113, 88, 57, 0.85);
+  border: 2px solid white;
+  color: white;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.gallery-nav-btn:hover {
+  background-color: var(--cordo-gold);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.gallery-prev-btn {
+  left: -55px;
+}
+
+.gallery-next-btn {
+  right: -55px;
+}
+
+@media (max-width: 768px) {
+  .gallery-prev-btn {
+    left: 10px;
+  }
+  .gallery-next-btn {
+    right: 10px;
+  }
+}
+
+.gallery-lightbox-footer {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: white;
+  font-size: 0.9rem;
+}
+
+.gallery-counter {
+  background-color: var(--cordo-gold);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+/* Accordion Smooth Collapse */
+.accordion-item-card.is-open {
+  border-color: var(--cordo-chocolate);
+}
+
+.accordion-body-collapse.expanded {
+  animation: puckAccordionFadeIn 0.25s ease forwards;
+}
+
+@keyframes puckAccordionFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Tabs */
+.tab-btn:hover {
+  background-color: var(--cordo-caramel);
+  color: white;
+}
+
+.tab-btn-active {
+  background-color: var(--cordo-chocolate) !important;
+  color: white !important;
+}
+
+/* Form Validation Styles */
+.form-input.is-invalid,
+.form-textarea.is-invalid {
+  border-color: #FA2D2D !important;
+  box-shadow: 0 0 0 2px rgba(250, 45, 45, 0.2) !important;
+}
+
+/* Puck Canvas Viewport Frame Constraints */
+.puck-canvas-viewport-frame {
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Zero Horizontal Overflow Enforcer */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+
+/* --------------------------------------------------------------------------
+   Puck Component Refinements & Retro Brutalist Polish
+   -------------------------------------------------------------------------- */
+.btn-retro-shadow {
+  box-shadow: 4px 4px 0px 0px var(--cordo-chocolate);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.btn-retro-shadow:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px 0px var(--cordo-gold);
+}
+
+.editor-history-controls button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.editor-viewports button {
+  transition: background-color var(--transition-fast);
+}
+
+.puck-canvas-outer {
+  min-height: calc(100vh - 54px);
+}
+
+.puck-accordion-container {
+  width: 100%;
+}
+
+.accordion-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.accordion-item-card {
+  box-shadow: 2px 2px 0px 0px var(--cordo-chocolate);
+}
+
+.accordion-header-btn:focus-visible {
+  outline: 2px solid var(--cordo-gold);
+}
+
+.puck-action-button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.button-icon {
+  margin-right: 0.35rem;
+}
+
+.puck-contact-form-container {
+  box-shadow: var(--cordo-shadow);
+}
+
+.contact-success-box {
+  animation: puckAccordionFadeIn 0.3s ease forwards;
+}
+
+.form-error {
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.divider-center {
+  padding: 0 0.5rem;
+}
+
+.puck-feature-icon-list {
+  padding: 0.5rem 0;
+}
+
+.heading-subtitle {
+  line-height: 1.5;
+}
+
+.puck-hero-banner {
+  box-sizing: border-box;
+}
+
+.hero-badge {
+  font-family: var(--font-title);
+}
+
+.puck-html-block {
+  overflow-x: auto;
+}
+
+.image-wrapper:hover .lightbox-hint-badge {
+  background-color: var(--cordo-gold);
+}
+
+.puck-carousel-wrapper {
+  user-select: none;
+}
+
+.carousel-nav-arrow:hover {
+  background-color: var(--cordo-gold) !important;
+}
+
+.puck-map-embed-container {
+  width: 100%;
+}
+
+.map-header {
+  padding: 0 0.25rem;
+}
+
+.puck-rating-display {
+  box-shadow: var(--cordo-shadow);
+}
+
+.stars-row {
+  align-items: center;
+}
+
+.section-nested-items {
+  width: 100%;
+}
+
+.tab-nav-list {
+  scrollbar-width: thin;
+}
+
+.tab-panel-content {
+  box-shadow: var(--cordo-shadow);
+}
+
+.video-responsive-frame iframe {
+  border-radius: 10px;
+}
+
+.live-status-badge {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+
+/* --------------------------------------------------------------------------
+   Scroll Target Offset (Sticky Header Compensation)
+   -------------------------------------------------------------------------- */
+section[id],
+.section-services-anchor,
+div[id] {
+  scroll-margin-top: 5rem;
+}
+
+/* --------------------------------------------------------------------------
+   Section 10: 12 Services Catalog & Cards Grid
+   -------------------------------------------------------------------------- */
+.cordo-services-catalog-wrap {
+  width: 100%;
+}
+
+.cordo-services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .cordo-services-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 680px) {
+  .cordo-services-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+/* Compact Service Card Matching Live Reference cordonnerie-lemillot.ags49.fr */
+.cordo-service-card,
+.cordo-service-card-compact {
+  background-color: #FFFFFF;
+  border: 4px dotted #C7804A;
+  border-radius: 12px;
+  box-shadow: 7px 7px 0px 0px var(--cordo-chocolate);
+  padding: 1rem 0.75rem 0.75rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  box-sizing: border-box;
+}
+
+.cordo-service-card:hover,
+.cordo-service-card-compact:hover {
+  transform: translateY(-3px);
+  box-shadow: 9px 9px 0px 0px var(--cordo-chocolate);
+}
+
+.cordo-service-carousel-wrap {
+  width: 100%;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cordo-service-card-title {
+  font-family: var(--font-title);
+  font-size: 1.2rem;
+  color: var(--cordo-chocolate);
+  margin: 0.5rem 0 0.35rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+}
+
+/* Dual Square Action Icon Buttons (Gallery & Descriptif) */
+.cordo-service-dual-buttons {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.25rem;
+  padding: 0;
+  border: none;
+}
+
+.cordo-service-icon-btn {
+  width: 35px;
+  height: 35px;
+  background-color: var(--cordo-gold);
+  color: #FFFFFF;
+  border: 2px solid #FFFFFF;
+  border-radius: 6px;
+  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.45);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.05rem;
+  transition: transform var(--transition-fast), background-color var(--transition-fast), color var(--transition-fast);
+  padding: 0;
+}
+
+.cordo-service-icon-btn:hover,
+.cordo-service-icon-btn:focus {
+  background-color: var(--cordo-yellow);
+  color: var(--cordo-dark);
+  transform: scale(1.08);
+}
+
+/* --------------------------------------------------------------------------
+   Dual Modal System (ServiceModal)
+   -------------------------------------------------------------------------- */
+.cordo-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-color: rgba(30, 25, 20, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  animation: cordoFadeIn 0.2s ease-out;
+}
+
+@keyframes cordoFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.cordo-modal-dialog {
+  background-color: var(--cordo-white);
+  border: 4px solid var(--cordo-chocolate);
+  border-radius: var(--radius-lg);
+  box-shadow: 7px 7px 0px 0px var(--cordo-chocolate);
+  max-width: min(760px, 94vw);
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  animation: cordoSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes cordoSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.cordo-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  background-color: var(--cordo-cream);
+  border-bottom: 2px solid var(--cordo-border);
+}
+
+.cordo-modal-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.cordo-modal-title {
+  font-family: var(--font-title);
+  font-size: clamp(1.1rem, 3vw, 1.35rem);
+  color: var(--cordo-chocolate);
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+.cordo-modal-close-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--cordo-chocolate);
+  padding: 0.35rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  transition: background-color var(--transition-fast);
+}
+
+.cordo-modal-close-btn:hover {
+  background-color: rgba(113, 88, 57, 0.12);
+}
+
+.cordo-modal-tabs {
+  display: flex;
+  background-color: #FAF7F2;
+  border-bottom: 2px solid var(--cordo-border);
+}
+
+.cordo-modal-tab {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-title);
+  font-size: 0.88rem;
+  color: var(--cordo-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-bottom: 3px solid transparent;
+  transition: all var(--transition-fast);
+}
+
+.cordo-modal-tab.active {
+  color: var(--cordo-chocolate);
+  background-color: var(--cordo-white);
+  border-bottom-color: var(--cordo-gold);
+  font-weight: 700;
+}
+
+.cordo-modal-body {
+  padding: 1.5rem;
+  overflow-y: auto;
+  flex: 1 1 auto;
+  max-height: calc(90vh - 140px);
+}
+
+.cordo-modal-html-content {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--cordo-dark);
+}
+
+.cordo-modal-html-content p {
+  margin-bottom: 0.75rem;
+}
+
+.cordo-modal-delay-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background-color: rgba(216, 150, 12, 0.12);
+  border: 1px solid var(--cordo-gold);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+  margin: 1.25rem 0;
+  font-size: 0.9rem;
+  color: var(--cordo-chocolate);
+}
+
+.cordo-modal-advantages-section {
+  margin: 1.25rem 0;
+}
+
+.cordo-modal-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.cordo-modal-check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--cordo-dark);
+}
+
+.cordo-modal-check-item .check-icon {
+  color: var(--cordo-gold);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.cordo-modal-quote-notice {
+  background-color: var(--cordo-cream);
+  border-left: 4px solid var(--cordo-caramel);
+  padding: 0.75rem 1rem;
+  font-size: 0.88rem;
+  color: var(--cordo-chocolate);
+  margin: 1.25rem 0;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.cordo-modal-actions-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--cordo-border);
+}
+
+.cordo-gallery-intro {
+  font-size: 0.92rem;
+  color: var(--cordo-muted);
+  margin-bottom: 1rem;
+}
+
+.cordo-modal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(170px, 100%), 1fr));
+  gap: 1rem;
+}
+
+.cordo-gallery-card {
+  border: 2px solid var(--cordo-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  cursor: pointer;
+  background-color: var(--cordo-white);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.cordo-gallery-card:hover {
+  transform: scale(1.02);
+  box-shadow: 4px 4px 0px 0px var(--cordo-chocolate);
+}
+
+.cordo-gallery-img-container {
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  background-color: #EEE;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cordo-gallery-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-base);
+}
+
+.cordo-gallery-card:hover .cordo-gallery-img {
+  transform: scale(1.05);
+}
+
+.cordo-gallery-caption {
+  padding: 0.5rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--cordo-chocolate);
+  background-color: #FAF7F2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cordo-zoom-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 10001;
+  background-color: rgba(0, 0, 0, 0.88);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.cordo-zoom-content {
+  position: relative;
+  max-width: min(800px, 90vw);
+  max-height: 85vh;
+}
+
+.cordo-zoom-close {
+  position: absolute;
+  top: -2.5rem;
+  right: 0;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 0.25rem;
+}
+
+.cordo-zoomed-img {
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  border: 3px solid white;
+  border-radius: var(--radius-sm);
+}
+
+/* --------------------------------------------------------------------------
+   Footer Responsive Breakpoints
+   -------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .footer-columns-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 580px) {
+  .footer-columns-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ==========================================================================
+   Améliorations visuelles — Alignement fidèle au site WordPress de référence
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Navigation Desktop — Correction hover & underline
+   -------------------------------------------------------------------------- */
+.nav-anchor-link {
+  position: relative;
+}
+
+.nav-anchor-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--cordo-gold);
+  transition: width var(--transition-fast);
+}
+
+.nav-anchor-link:hover {
+  color: var(--cordo-caramel) !important;
+}
+
+.nav-anchor-link:hover::after {
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   Header Top Bar — Amélioration visuelle
+   -------------------------------------------------------------------------- */
+.public-top-bar {
+  letter-spacing: 0.01em;
+}
+
+/* --------------------------------------------------------------------------
+   Navigation Mobile — Responsive corrections
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .desktop-nav {
+    display: none !important;
+  }
+  .mobile-nav-toggle {
+    display: flex !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-nav-toggle {
+    display: none !important;
+  }
+  .mobile-nav-drawer {
+    display: none !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Section Containers — Espacement et séparation améliorés
+   -------------------------------------------------------------------------- */
+.puck-section-container {
+  border-bottom: 1px solid rgba(113, 88, 57, 0.08);
+}
+
+.puck-section-container:last-child {
+  border-bottom: none;
+}
+
+/* --------------------------------------------------------------------------
+   Footer — Amélioration responsive complète
+   -------------------------------------------------------------------------- */
+.public-footer {
+  background: linear-gradient(135deg, #2F2418 0%, #1e1710 100%);
+}
+
+.footer-link {
+  transition: color var(--transition-fast);
+  display: inline-block;
+}
+
+.footer-link:hover {
+  color: var(--cordo-yellow) !important;
+  transform: translateX(2px);
+}
+
+@media (max-width: 768px) {
+  .public-footer {
+    padding-top: 2.5rem;
+    padding-bottom: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .footer-columns-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 1.5rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-columns-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem !important;
+  }
+
+  .footer-col {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .footer-col:last-child {
+    border-bottom: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Section Héro (HeroBanner) — Améliorations visuelles
+   -------------------------------------------------------------------------- */
+.puck-hero-banner {
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .puck-hero-banner {
+    min-height: 320px;
+    padding: 3rem 1rem !important;
+  }
+
+  .puck-hero-banner h1 {
+    font-size: clamp(1.4rem, 5vw, 2rem) !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Boutons de cartes service — Alignement amélioré
+   -------------------------------------------------------------------------- */
+.cordo-btn-gallery,
+.cordo-btn-desc {
+  border-radius: var(--radius-sm) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em !important;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast) !important;
+}
+
+.cordo-btn-gallery:hover {
+  transform: translateY(-1px);
+  box-shadow: 3px 3px 0 var(--cordo-chocolate) !important;
+}
+
+.cordo-btn-desc:hover {
+  transform: translateY(-1px);
+  box-shadow: 3px 3px 0 #3f311f !important;
+}
+
+/* --------------------------------------------------------------------------
+   Modale — Améliorations visuelles et responsive
+   -------------------------------------------------------------------------- */
+@media (max-width: 600px) {
+  .cordo-modal-dialog {
+    max-width: 100vw !important;
+    border-radius: var(--radius-md) !important;
+    max-height: 95vh !important;
+  }
+
+  .cordo-modal-tab span {
+    display: none;
+  }
+
+  .cordo-modal-tab {
+    padding: 0.75rem 0.5rem;
+  }
+
+  .cordo-modal-body {
+    padding: 1rem;
+    max-height: calc(95vh - 140px);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Galerie d'atelier (Section 16)
+   -------------------------------------------------------------------------- */
+.cordo-workshop-gallery-wrap {
+  padding: 1rem 0;
+}
+
+/* --------------------------------------------------------------------------
+   Blocs de contenu enrichi (RichText)
+   -------------------------------------------------------------------------- */
+.puck-richtext-block h1,
+.puck-richtext-block h2,
+.puck-richtext-block h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.puck-richtext-block blockquote {
+  border-left: 4px solid var(--cordo-gold);
+  margin: 1rem 0;
+  padding: 0.5rem 1rem;
+  background-color: var(--cordo-cream);
+  font-style: italic;
+  color: var(--cordo-muted);
+}
+
+/* --------------------------------------------------------------------------
+   Accordion des lexiques — Améliorations UX
+   -------------------------------------------------------------------------- */
+.accordion-item-card {
+  transition: border-color var(--transition-fast);
+  margin-bottom: 0.5rem;
+}
+
+.accordion-header-btn {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.85rem 1rem;
+  font-family: var(--font-title);
+  color: var(--cordo-chocolate);
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background-color var(--transition-fast);
+}
+
+.accordion-header-btn:hover {
+  background-color: var(--cordo-cream);
+}
+
+/* --------------------------------------------------------------------------
+   Formulaire de contact — Améliorations visuelles
+   -------------------------------------------------------------------------- */
+.puck-contact-form-container {
+  background: var(--cordo-white);
+  border: 2px solid var(--cordo-border);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+}
+
+/* --------------------------------------------------------------------------
+   Carte horaires — Alignement responsive
+   -------------------------------------------------------------------------- */
+@media (max-width: 560px) {
+  .puck-business-hours-card {
+    margin: 1rem 0 !important;
+    padding: 1.25rem !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Images — Correction affichage dans sections
+   -------------------------------------------------------------------------- */
+.puck-image-block img {
+  border-radius: var(--radius-sm);
+}
+
+/* --------------------------------------------------------------------------
+   Navigation — Correction largeur max responsive
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .desktop-nav {
+    gap: 0.75rem !important;
+  }
+
+  .nav-anchor-link {
+    font-size: 0.8rem !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Service card icon — Remplacement FontAwesome par emoji/texte
+   -------------------------------------------------------------------------- */
+.service-card-icon.far,
+.service-card-icon.fas,
+.service-card-icon.fa {
+  /* FA icons loaded via CDN — fallback hidden si non chargées */
+  display: inline-block;
+  width: 1.3rem;
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   Grille footer responsive — Correctif supplémentaire
+   -------------------------------------------------------------------------- */
+.footer-columns-grid.grid.grid-cols-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 960px) {
+  .footer-columns-grid.grid.grid-cols-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .footer-columns-grid.grid.grid-cols-4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Titre principal — Ombre dorée 3D façon WordPress d'origine
+   -------------------------------------------------------------------------- */
+.puck-hero-banner h1,
+.hero-title-3d {
+  text-shadow: 2px 2px 0px var(--cordo-gold), 0 0 0px transparent;
+}
+
+/* ==========================================================================
+   Home Page Faithful Redesign Styles (Reference: cordonnerie-lemillot.ags49.fr)
+   ========================================================================== */
+
+/* 1. Haut de page: Hide default top header on home route so page begins with title */
+.public-header-home {
+  display: none !important;
+}
+
+/* Titre principal centré (Section 1) */
+.cordo-main-title {
+  font-family: var(--font-title);
+  color: var(--cordo-chocolate);
+  text-shadow: 0px 3px 0px #FFAE07;
+  font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+  letter-spacing: 0.04em;
+  margin: 0.5rem 0 0.25rem 0;
+  text-align: center;
+}
+
+/* Titres avec séparateurs pointillés (Sections 4, 9, 11, 13, 15) */
+.cordo-title-banner-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  width: 100%;
+  margin: 0.75rem 0 0.5rem 0;
+}
+
+.cordo-title-banner-line {
+  flex: 1;
+  border-top: 2px dotted #715839;
+  height: 0;
+}
+
+.cordo-title-banner-text {
+  font-family: var(--font-title);
+  color: var(--cordo-chocolate);
+  text-shadow: 0px 2px 0px var(--cordo-gold);
+  font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0;
+  text-align: center;
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .cordo-title-banner-row {
+    gap: 0.75rem;
+  }
+  .cordo-title-banner-text {
+    font-size: 1.2rem;
+  }
+}
+
+/* Wood banners system with borders matching Elementor source */
+.cordo-wood-banner {
+  box-shadow: 7px 7px 0px 0px var(--cordo-chocolate);
+  margin: 0.75rem auto;
+  border: 4px solid #4054B2;
+  border-radius: 16px;
+}
+
+.cordo-banner-hero {
+  border: 4px solid #4054B2;
+  border-radius: 16px;
+}
+
+.cordo-banner-accueil {
+  border: 4px solid #4054B2;
+  border-radius: 16px;
+}
+
+.cordo-banner-pass-title {
+  border-top: 4px solid var(--cordo-caramel) !important;
+  border-left: 4px solid var(--cordo-caramel) !important;
+  border-right: 4px solid var(--cordo-caramel) !important;
+  border-bottom: none !important;
+  border-radius: 6px 6px 0 0 !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 0.5rem !important;
+}
+
+.cordo-banner-pass-content {
+  border-bottom: 4px solid var(--cordo-caramel) !important;
+  border-left: 4px solid var(--cordo-caramel) !important;
+  border-right: 4px solid var(--cordo-caramel) !important;
+  border-top: none !important;
+  border-radius: 0 0 6px 6px !important;
+  margin-top: 0 !important;
+  padding-top: 0.5rem !important;
+}
+
+.cordo-banner-services {
+  border: 4px solid var(--cordo-caramel) !important;
+  border-radius: 6px !important;
+}
+
+.cordo-banner-contact {
+  border: 4px solid #4054B2 !important;
+  border-radius: 6px !important;
+}
+
+.cordo-banner-horaires {
+  border: 4px solid var(--cordo-caramel) !important;
+  border-radius: 6px !important;
+}
+
+.cordo-banner-atelier {
+  border: 4px solid var(--cordo-caramel) !important;
+  border-radius: 6px !important;
+}
+
+.cordo-banner-kraftweb {
+  border: 8px double var(--cordo-chocolate) !important;
+  border-radius: 12px !important;
+  margin: 1.5rem auto 4rem auto !important;
+  max-width: 1140px;
+}
+
+/* 2. Bandeau principal (Hero Banner 3 equal columns) */
+.cordo-hero-banner-wrap {
+  width: 100%;
+}
+
+.cordo-hero-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  align-items: center;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .cordo-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+.cordo-hero-card {
+  background: rgba(251, 251, 251, 0.95);
+  border: 4px dotted #4054B2;
+  border-radius: 12px;
+  padding: 0.75rem;
+  box-shadow: 7px 7px 0px 0px var(--cordo-chocolate);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition-fast);
+}
+
+.cordo-hero-card:hover {
+  transform: translateY(-3px);
+}
+
+.cordo-hero-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border: 5px solid var(--cordo-caramel);
+  border-radius: 12px;
+  box-shadow: 7px 7px 0px 0px var(--cordo-chocolate);
+  display: block;
+}
+
+/* 3. Section Accueil */
+.cordo-accueil-wrap {
+  width: 100%;
+}
+
+.cordo-accueil-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr;
+  gap: 1.25rem;
+  align-items: center;
+  width: 100%;
+}
+
+@media (max-width: 860px) {
+  .cordo-accueil-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+.cordo-accueil-photo-frame {
+  background: rgba(251, 251, 251, 0.95);
+  border: 4px dotted #4054B2;
+  border-radius: 12px;
+  padding: 0.5rem;
+  box-shadow: 7px 7px 0px 0px var(--cordo-chocolate);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cordo-accueil-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border: 4px solid var(--cordo-caramel);
+  border-radius: 8px;
+  display: block;
+}
+
+.cordo-accueil-card {
+  background: #FFFFFF;
+  border: 4px solid #4054B2;
+  border-radius: 10px;
+  padding: 1.25rem 1rem;
+  box-shadow: 7px 7px 0px 0px var(--cordo-chocolate);
+  text-align: center;
+}
+
+/* 4. Section Nouveau */
+.cordo-nouveau-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  margin: 0.75rem 0 0.5rem 0;
+}
+
+.cordo-nouveau-line {
+  flex: 1;
+  border-top: 2px dotted #715839;
+  height: 0;
+}
+
+.cordo-sun-icon {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.cordo-nouveau-title {
+  font-family: var(--font-title);
+  color: var(--cordo-chocolate);
+  font-size: 1.5rem;
+  letter-spacing: 0.05em;
+  margin: 0;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  .cordo-nouveau-row {
+    gap: 0.6rem;
+  }
+  .cordo-nouveau-title {
+    font-size: 1.25rem;
+  }
+  .cordo-sun-icon {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/* Section Pass sanitaire */
+.cordo-pass-wrap {
+  width: 100%;
+}
+
+.cordo-pass-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  align-items: center;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .cordo-pass-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+.cordo-pass-card-left {
+  background: #FFFFFF;
+  border: 4px solid #4054B2;
+  border-radius: 10px;
+  padding: 1.25rem 1rem;
+  box-shadow: 7px 7px 0px 0px var(--cordo-chocolate);
+}
+
+.cordo-pass-title {
+  font-family: var(--font-title);
+  color: var(--cordo-chocolate);
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.cordo-pass-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--cordo-dark);
+}
+
+.pass-check {
+  color: var(--cordo-green);
+  font-weight: 700;
+  margin-right: 0.5rem;
+}
+
+/* Section Contact */
+.cordo-contact-wrap {
+  width: 100%;
+}
+
+.cordo-contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr;
+  gap: 1.25rem;
+  align-items: center;
+  width: 100%;
+}
+
+@media (max-width: 860px) {
+  .cordo-contact-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+.cordo-contact-photo-frame {
+  background: rgba(251, 251, 251, 0.95);
+  border: 4px dotted #4054B2;
+  border-radius: 12px;
+  padding: 0.5rem;
+  box-shadow: 7px 7px 0px 0px var(--cordo-chocolate);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cordo-contact-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border: 4px solid var(--cordo-caramel);
+  border-radius: 8px;
+  display: block;
+}
+
+.cordo-contact-card {
+  background: #FFFFFF;
+  border: 4px solid #4054B2;
+  border-radius: 10px;
+  padding: 1.25rem 1rem;
+  box-shadow: 7px 7px 0px 0px var(--cordo-chocolate);
+  text-align: center;
+}
+
+.cordo-contact-name {
+  font-family: var(--font-title);
+  color: var(--cordo-chocolate);
+  font-size: 1.2rem;
+  margin-bottom: 0.2rem;
+}
+
+.cordo-contact-role {
+  font-family: var(--font-title);
+  color: var(--cordo-caramel);
+  font-size: 0.9rem;
+  margin-bottom: 0.4rem;
+}
+
+.cordo-contact-exp {
+  font-size: 0.85rem;
+  color: var(--cordo-muted);
+  margin-bottom: 0.75rem;
+}
+
+.cordo-contact-actions {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0.75rem 0;
+}
+
+.cordo-contact-addr {
+  font-size: 0.85rem;
+  color: var(--cordo-dark);
+  font-weight: 500;
+  margin-top: 0.4rem;
+}
+
+/* Section Horaires */
+.cordo-horaires-wrap {
+  width: 100%;
+}
+
+.cordo-horaires-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr 1fr;
+  gap: 1.25rem;
+  align-items: center;
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .cordo-horaires-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+.cordo-horaires-card {
+  background: #FFFFFF;
+  border: 4px solid #4054B2;
+  border-radius: 10px;
+  padding: 1.25rem 1rem;
+  box-shadow: 7px 7px 0px 0px var(--cordo-chocolate);
+  display: flex;
+  flex-direction: column;
+}
+
+.cordo-horaires-title {
+  font-family: var(--font-title);
+  color: var(--cordo-chocolate);
+  font-size: 1.15rem;
+  margin-bottom: 0.5rem;
+}
+
+.cordo-horaires-desc {
+  font-size: 0.88rem;
+  color: var(--cordo-dark);
+  margin-bottom: 0.75rem;
+}
+
+.cordo-horaires-info p {
+  font-size: 0.85rem;
+  margin-bottom: 0.4rem;
+  line-height: 1.45;
+}
+
+.cordo-horaires-schedule-card {
+  background: #FFFFFF;
+  border: 4px solid #4054B2;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 7px 7px 0px 0px var(--cordo-chocolate);
+}
+
+.cordo-horaires-map-card {
+  border: 4px solid #4054B2;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 7px 7px 0px 0px var(--cordo-chocolate);
+  background: #FFFFFF;
+}
+
+/* Nested Grid fallback for generic sections */
+.section-nested-grid {
+  display: grid;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.section-nested-grid.structure-100 {
+  grid-template-columns: 1fr;
+}
+
+.section-nested-grid.structure-50,
+.section-nested-grid.structure-50-50 {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.section-nested-grid.structure-30,
+.section-nested-grid.structure-33-33-33 {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.section-nested-grid.structure-40 {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+/* --------------------------------------------------------------------------
+   Pass Sanitaire Header Title (Section 7)
+   -------------------------------------------------------------------------- */
+.cordo-pass-header-title {
+  font-family: var(--font-title);
+  color: var(--cordo-gold);
+  text-shadow: 0px 2px 0px var(--cordo-chocolate);
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  margin: 0;
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   Section 17: Sitemap & Glossaire Footer (4 Columns)
+   -------------------------------------------------------------------------- */
+.cordo-sitemap-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  align-items: start;
+  width: 100%;
+  color: #FFFFFF;
+}
+
+@media (max-width: 960px) {
+  .cordo-sitemap-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .cordo-sitemap-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+.cordo-sitemap-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.cordo-sitemap-title {
+  color: var(--cordo-gold);
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+.cordo-sitemap-list {
+  list-style: square;
+  padding-left: 1.25rem;
+  margin: 0;
+}
+
+.cordo-sitemap-list li {
+  margin-bottom: 0.5rem;
+}
+
+.cordo-sitemap-list a {
+  color: #FFFFFF;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color var(--transition-fast);
+}
+
+.cordo-sitemap-list a:hover {
+  color: var(--cordo-yellow);
+  text-decoration: underline;
+}
+
+.cordo-sitemap-copyright {
+  color: #FFFFFF;
+  font-size: 0.95rem;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.cordo-sitemap-share-btns {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.elementor-share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #FFFFFF !important;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform var(--transition-fast), filter var(--transition-fast);
+}
+
+.elementor-share-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+
+.elementor-share-btn-facebook {
+  background: linear-gradient(180deg, #4267B2 0%, #365899 100%);
+}
+
+.elementor-share-btn-twitter {
+  background: linear-gradient(180deg, #1DA1F2 0%, #0c85d0 100%);
+}
+
+/* --------------------------------------------------------------------------
+   Section 18: Intermarché Partner
+   -------------------------------------------------------------------------- */
+.cordo-intermarche-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  align-items: center;
+  width: 100%;
+}
+
+@media (max-width: 860px) {
+  .cordo-intermarche-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    text-align: center;
+  }
+}
+
+.cordo-intermarche-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --------------------------------------------------------------------------
+   Homepage Footer Deduplication
+   -------------------------------------------------------------------------- */
+.public-footer-home .footer-columns-grid {
+  display: none !important;
+}
+
+.public-footer-home {
+  padding-top: 0 !important;
+  border-top: none !important;
+  background-color: transparent !important;
+}
+
+.public-footer-home .footer-bottom {
+  border-top: 1px solid var(--cordo-border);
+  padding: 1.5rem 0;
+  text-align: center;
+}
+
+
