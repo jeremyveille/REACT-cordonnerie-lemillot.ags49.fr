@@ -1,0 +1,212 @@
+{
+  "site": {
+    "name": "Cordonnerie - Le Millot",
+    "description": "Cordonnerie traditionnelle et multi-services à Angers",
+    "url": "https://cordonnerie-lemillot.ags49.fr",
+    "homeUrl": "https://cordonnerie-lemillot.ags49.fr",
+    "adminEmail": "jeremy.veille@hotmail.fr",
+    "activeKitId": "73"
+  },
+  "artisan": {
+    "name": "ASIEN Jean-Christophe",
+    "title": "Artisan Cordonnier",
+    "city": "Angers",
+    "experience": "Depuis plus de 21 ans",
+    "facebook": "https://www.facebook.com/jeanchristophe.asien"
+  },
+  "businessHours": [
+    {
+      "day": "Lundi",
+      "hours": "9h00 - 19h00",
+      "isClosed": false,
+      "highlight": true,
+      "dayColor": "#715839",
+      "timeColor": "#715839",
+      "bgColor": "#FFFFFF"
+    },
+    {
+      "day": "Mardi",
+      "hours": "9h00 - 19h00",
+      "isClosed": false,
+      "highlight": true,
+      "dayColor": "#715839",
+      "timeColor": "#715839",
+      "bgColor": "#FFFFFF"
+    },
+    {
+      "day": "Mercredi",
+      "hours": "9h00 - 19h00",
+      "isClosed": false,
+      "highlight": true,
+      "dayColor": "#715839",
+      "timeColor": "#715839",
+      "bgColor": "#FFFFFF"
+    },
+    {
+      "day": "Jeudi",
+      "hours": "9h00 - 19h00",
+      "isClosed": false,
+      "highlight": true,
+      "dayColor": "#715839",
+      "timeColor": "#715839",
+      "bgColor": "#FFFFFF"
+    },
+    {
+      "day": "Vendredi",
+      "hours": "9h00 - 19h00",
+      "isClosed": false,
+      "highlight": true,
+      "dayColor": "#715839",
+      "timeColor": "#715839",
+      "bgColor": "#FFFFFF"
+    },
+    {
+      "day": "Samedi",
+      "hours": "9h00 - 19h00",
+      "isClosed": false,
+      "highlight": true,
+      "dayColor": "#715839",
+      "timeColor": "#715839",
+      "bgColor": "#FFFFFF"
+    },
+    {
+      "day": "Dimanche",
+      "hours": "Fermé",
+      "isClosed": true,
+      "highlight": true,
+      "dayColor": "#715839",
+      "timeColor": "#FA2D2D",
+      "bgColor": "#715839"
+    }
+  ],
+  "contact": {
+    "phoneLandline": "02 41 47 06 29",
+    "phoneLandlineLink": "tel:0241470629",
+    "phoneMobile": "06 61 76 09 42",
+    "phoneMobileLink": "tel:0661760942",
+    "email": "asien.jeanchristophe@neuf.fr",
+    "emailLink": "mailto:asien.jeanchristophe@neuf.fr",
+    "ratingScore": 5,
+    "ratingMax": 5,
+    "ratingLabel": "Vos avis : 5 / 5"
+  },
+  "location": {
+    "address": "55 Boulevard Jacques Millot",
+    "postalCode": "49000",
+    "city": "Angers",
+    "district": "Quartier Madeleine",
+    "shoppingCenter": "Galerie marchande Intermarché SUPER Madeleine",
+    "coordinates": {
+      "lat": 47.4556322,
+      "lng": -0.5350256
+    },
+    "googleMapsUrl": "https://www.google.com/maps/place/Asien+Jean+Christophe/@47.4556322,-0.5350256,15z/data=!4m5!3m4!1s0x0:0xd4a436085175adcc!8m2!3d47.4556322!4d-0.5350256",
+    "mapEmbedAddress": "Intermarché - 55 bd jacques millot Angers",
+    "mapZoom": 18,
+    "mapHeight": 271
+  },
+  "navigation": {
+    "menuName": "menu-LeMillot",
+    "menuId": 2,
+    "items": [
+      {
+        "id": 78,
+        "title": "accueil",
+        "anchor": "#accueil",
+        "url": "/#accueil",
+        "parentId": 0,
+        "order": 1
+      },
+      {
+        "id": 79,
+        "title": "mes services",
+        "anchor": "#services",
+        "url": "/#services",
+        "parentId": 0,
+        "order": 2
+      },
+      {
+        "id": 80,
+        "title": "contact",
+        "anchor": "#contact",
+        "url": "/#contact",
+        "parentId": 0,
+        "order": 3
+      },
+      {
+        "id": 81,
+        "title": "mes horaires",
+        "anchor": "#horaires",
+        "url": "/#horaires",
+        "parentId": 80,
+        "order": 4
+      },
+      {
+        "id": 82,
+        "title": "me situer",
+        "anchor": "#localisation",
+        "url": "/#localisation",
+        "parentId": 80,
+        "order": 5
+      },
+      {
+        "id": 353,
+        "title": "mon atelier",
+        "anchor": "#atelier",
+        "url": "/#atelier",
+        "parentId": 80,
+        "order": 6
+      }
+    ],
+    "lexiquePages": [
+      {
+        "title": "Lexique des cuirs",
+        "url": "/lexique-des-cuirs",
+        "id": "888"
+      },
+      {
+        "title": "Lexique semelles extérieurs",
+        "url": "/lexique-semelles-exterieurs",
+        "id": "1022"
+      },
+      {
+        "title": "Lexique chaussures",
+        "url": "/lexique-chaussures",
+        "id": "1046"
+      }
+    ]
+  },
+  "branding": {
+    "colors": {
+      "chocolate": "#715839",
+      "caramel": "#C7804A",
+      "caramelLight": "#D8960C",
+      "caramelFondant": "#ECB135D6",
+      "accentYellow": "#E5E000",
+      "businessHoursGreen": "#1B6C30",
+      "closedRed": "#FA2D2D",
+      "white": "#FFFFFF",
+      "backgroundGrey": "#FCFCFC",
+      "shadow": "7px 7px 0px 0px #715839"
+    },
+    "typography": {
+      "headings": "Audiowide",
+      "subheadings": "Roboto Slab",
+      "body": "Roboto"
+    },
+    "borderRadius": "12px"
+  },
+  "credits": {
+    "developer": "KraftWeb",
+    "developerRole": "DEVELOPPEUR - INTEGRATEUR - WEB",
+    "developerEmail": "contact@kraftweb.fr",
+    "developerLogo": "/uploads/2021/05/CAPTURE-LOGO-KRAFTWEB.png",
+    "copyright": "Copyright © 2023 tous droits protégés.",
+    "partner": {
+      "name": "Intermarché",
+      "logo": "/uploads/2021/05/Logo-Intermarche-removebg-preview.png",
+      "storefrontImage": "/uploads/2023/03/IMG_20230304_144300-1-scaled.jpg",
+      "description": "Retrouvez votre artisan au cœur de la galerie marchande avec parking gratuit et accès facile pendant vos courses."
+    }
+  }
+}
