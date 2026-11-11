@@ -32,13 +32,26 @@ yarn-error.log*
 pnpm-debug.log*
 
 # ==========================================
-# WordPress (caches, uploads temporaires)
+# WordPress (caches, uploads temporaires & legacy)
 # ==========================================
-wp-content/cache/
-wp-content/upgrade/
-wp-content/backups/
-wp-content/advanced-cache.php
-wp-content/wp-cache-config.php
+wp-admin/
+wp-includes/
+wp-content/
+*.php
+license.txt
+readme.html
+default_index.html
+
+# ==========================================
+# Données d'extraction brutes & outils temporaires
+# ==========================================
+elementor_parsed_active.json
+extracted_all_postmeta.json
+posts.json
+extracted_data/
+.agents/
+wk/
+SITE/
 
 # ==========================================
 # Firebase
