@@ -1,0 +1,48 @@
+{
+  "timestamp": "2026-11-11T17:13:41.432Z",
+  "summary": {
+    "total": 260,
+    "passed": 260,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 44
+  },
+  "tiers": {
+    "tier1": {
+      "name": "Tier 1: Couverture Fonctionnelle (Category-Partition)",
+      "total": 100,
+      "passed": 100,
+      "failed": 0,
+      "skipped": 0
+    },
+    "tier2": {
+      "name": "Tier 2: Limites et Cas d'Angle (Boundary Value Analysis)",
+      "total": 100,
+      "passed": 100,
+      "failed": 0,
+      "skipped": 0
+    },
+    "tier3": {
+      "name": "Tier 3: Combinaisons Croisées (Pairwise Interactions)",
+      "total": 20,
+      "passed": 20,
+      "failed": 0,
+      "skipped": 0
+    },
+    "tier4": {
+      "name": "Tier 4: Scénarios Métier Réels (Workload Scenarios)",
+      "total": 10,
+      "passed": 10,
+      "failed": 0,
+      "skipped": 0
+    },
+    "tier5": {
+      "name": "Tier 5: Durcissement Contradictoire (Adversarial Hardening)",
+      "total": 30,
+      "passed": 30,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "failures": []
+}
