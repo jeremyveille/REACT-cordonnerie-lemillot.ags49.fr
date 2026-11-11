@@ -675,7 +675,7 @@
       "id": 7,
       "slug": "telecommandes",
       "title": "Télécommandes portails",
-      "icon": "icon icon-hosting1",
+      "icon": "fas fa-sliders",
       "column": 2,
       "shortDescription": "La Cordonnerie \"Le Millot\" réalise la reproduction et la programmation de télécommandes pour portails automatiques, portes de garage et barrières.",
       "features": [

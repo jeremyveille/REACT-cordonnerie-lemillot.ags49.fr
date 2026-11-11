@@ -78,6 +78,26 @@ test('Section 10: Renders the 12 service cards with dual buttons', () => {
   assert.ok(html.includes('cordo-btn-desc'), 'Must render Descriptif button');
 });
 
+test('Section 10: Telecommandes service renders sliders icon and not legacy icon-hosting1', () => {
+  const services = (serviceModalsData as any).services || [];
+  const telecommandes = services.find((s: any) => s.slug === 'telecommandes' || s.id === 7);
+  assert.ok(telecommandes, 'Telecommandes service must exist');
+  assert.strictEqual(telecommandes.icon, 'fas fa-sliders', 'Telecommandes icon must be fas fa-sliders in service catalog');
+
+  const html = renderToStaticMarkup(
+    React.createElement(
+      ModalProvider,
+      null,
+      React.createElement(SectionContainer, { sectionIndex: 10, id: '5eb5ef5' })
+    )
+  );
+
+  assert.ok(html.includes('Télécommandes'), 'Must render Télécommandes card');
+  assert.ok(html.includes('fas fa-sliders'), 'Must render sliders icon for telecommandes');
+  assert.ok(!html.includes('icon-hosting1'), 'Must not render unmapped icon-hosting1');
+  assert.ok(html.includes('far fa-list-alt'), 'Right button must still render far fa-list-alt');
+});
+
 test('Header: Renders all 6 contractual anchor targets and phone link', () => {
   const html = renderToStaticMarkup(
     React.createElement(
