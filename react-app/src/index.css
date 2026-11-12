@@ -1178,8 +1178,8 @@ div[id] {
 
 .cordo-icon-remote-control {
   display: inline-block;
-  width: 19px;
-  height: 19px;
+  width: 20px;
+  height: 20px;
   background-color: currentColor;
   -webkit-mask-image: url('/icons/remote-control.png');
   mask-image: url('/icons/remote-control.png');
