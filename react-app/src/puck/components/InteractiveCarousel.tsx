@@ -134,12 +134,13 @@ export const InteractiveCarousel: React.FC<InteractiveCarouselProps> = ({
               alt={slide.alt || slide.title || `Diapositive ${idx + 1}`}
               style={{
                 width: '100%',
-                height: isService ? '165px' : '360px',
+                height: isService ? '175px' : '360px',
+                aspectRatio: isService ? '1.24' : undefined,
                 objectFit: 'cover',
                 display: 'block',
-                borderRadius: isService ? '12px' : 0,
-                border: isService ? '5px solid #C7804A' : 'none',
-                boxShadow: isService ? '4px 4px 0px 0px #715839' : 'none',
+                borderRadius: isService ? '10px' : 0,
+                border: isService ? '3px solid #C7804A' : 'none',
+                boxShadow: isService ? '2px 2px 0px 0px #715839' : 'none',
               }}
             />
             {!isService && (slide.title || slide.description) && (
@@ -184,7 +185,7 @@ export const InteractiveCarousel: React.FC<InteractiveCarouselProps> = ({
             className="carousel-nav-arrow carousel-arrow-left"
             style={{
               position: 'absolute',
-              top: isService ? '82px' : '50%',
+              top: isService ? '87px' : '50%',
               left: isService ? '8px' : '12px',
               transform: 'translateY(-50%)',
               width: isService ? '32px' : '40px',
@@ -198,7 +199,7 @@ export const InteractiveCarousel: React.FC<InteractiveCarouselProps> = ({
               justifyContent: 'center',
               cursor: 'pointer',
               zIndex: 10,
-              boxShadow: '0 2px 6px rgba(0,0,0,0.3)',
+              boxShadow: '0 2px 6px rgba(0,0,0,0.25)',
               padding: 0,
             }}
           >
@@ -214,7 +215,7 @@ export const InteractiveCarousel: React.FC<InteractiveCarouselProps> = ({
             className="carousel-nav-arrow carousel-arrow-right"
             style={{
               position: 'absolute',
-              top: isService ? '82px' : '50%',
+              top: isService ? '87px' : '50%',
               right: isService ? '8px' : '12px',
               transform: 'translateY(-50%)',
               width: isService ? '32px' : '40px',
@@ -228,7 +229,7 @@ export const InteractiveCarousel: React.FC<InteractiveCarouselProps> = ({
               justifyContent: 'center',
               cursor: 'pointer',
               zIndex: 10,
-              boxShadow: '0 2px 6px rgba(0,0,0,0.3)',
+              boxShadow: '0 2px 6px rgba(0,0,0,0.25)',
               padding: 0,
             }}
           >
@@ -264,9 +265,9 @@ export const InteractiveCarousel: React.FC<InteractiveCarouselProps> = ({
               }}
               aria-label={`Aller à la diapositive ${idx + 1}`}
               style={{
-                width: idx === currentIndex ? (isService ? '18px' : '24px') : '8px',
+                width: isService ? '8px' : (idx === currentIndex ? '24px' : '8px'),
                 height: '8px',
-                borderRadius: '4px',
+                borderRadius: isService ? '50%' : '4px',
                 backgroundColor:
                   idx === currentIndex
                     ? isService
@@ -275,7 +276,7 @@ export const InteractiveCarousel: React.FC<InteractiveCarouselProps> = ({
                     : isService
                     ? '#C7804A'
                     : 'rgba(255, 255, 255, 0.6)',
-                opacity: idx === currentIndex ? 1 : 0.5,
+                opacity: idx === currentIndex ? 1 : (isService ? 0.45 : 0.5),
                 border: 'none',
                 cursor: 'pointer',
                 transition: 'all 0.25s ease',

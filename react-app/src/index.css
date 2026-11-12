@@ -1105,10 +1105,10 @@ div[id] {
 .cordo-service-card,
 .cordo-service-card-compact {
   background-color: #FFFFFF;
-  border: 4px dotted #C7804A;
-  border-radius: 12px;
-  box-shadow: 7px 7px 0px 0px var(--cordo-chocolate);
-  padding: 1rem 0.75rem 0.75rem 0.75rem;
+  border: 3px dotted #C7804A;
+  border-radius: 10px;
+  box-shadow: none;
+  padding: 1rem 0.85rem 0.85rem 0.85rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1119,8 +1119,8 @@ div[id] {
 
 .cordo-service-card:hover,
 .cordo-service-card-compact:hover {
-  transform: translateY(-3px);
-  box-shadow: 9px 9px 0px 0px var(--cordo-chocolate);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(113, 88, 57, 0.15);
 }
 
 .cordo-service-carousel-wrap {
@@ -1637,20 +1637,18 @@ div[id] {
    -------------------------------------------------------------------------- */
 .cordo-btn-gallery,
 .cordo-btn-desc {
-  border-radius: var(--radius-sm) !important;
+  border-radius: 6px !important;
   font-weight: 700 !important;
   letter-spacing: 0.02em !important;
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast) !important;
+  transition: transform var(--transition-fast), background-color var(--transition-fast), box-shadow var(--transition-fast) !important;
 }
 
-.cordo-btn-gallery:hover {
-  transform: translateY(-1px);
-  box-shadow: 3px 3px 0 var(--cordo-chocolate) !important;
-}
-
+.cordo-btn-gallery:hover,
 .cordo-btn-desc:hover {
-  transform: translateY(-1px);
-  box-shadow: 3px 3px 0 #3f311f !important;
+  background-color: var(--cordo-yellow) !important;
+  color: var(--cordo-dark) !important;
+  transform: scale(1.08) translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35) !important;
 }
 
 /* --------------------------------------------------------------------------
@@ -1681,7 +1679,34 @@ div[id] {
    Galerie d'atelier (Section 16)
    -------------------------------------------------------------------------- */
 .cordo-workshop-gallery-wrap {
-  padding: 1rem 0;
+  padding: 1rem;
+  background: linear-gradient(180deg, #FFFFFF 0%, #F8F6F4 100%);
+  border: 4px dotted #715839;
+  border-radius: 12px;
+  box-shadow: 7px 7px 0px 3px var(--cordo-caramel);
+  margin: 1rem 0;
+}
+
+.cordo-workshop-gallery-wrap .gallery-item-card {
+  border: 6px solid var(--cordo-caramel);
+  border-radius: 9px;
+  box-shadow: 4px 4px 0px 0px var(--cordo-chocolate);
+  overflow: hidden;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.cordo-workshop-gallery-wrap .gallery-item-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 6px 6px 0px 0px var(--cordo-gold);
+}
+
+.cordo-workshop-gallery-wrap .gallery-item-title,
+.cordo-workshop-gallery-wrap .gallery-item-caption {
+  color: var(--cordo-chocolate);
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  font-weight: 600;
+  text-align: center;
 }
 
 /* --------------------------------------------------------------------------
@@ -1776,9 +1801,12 @@ div[id] {
    -------------------------------------------------------------------------- */
 .service-card-icon.far,
 .service-card-icon.fas,
-.service-card-icon.fa {
-  /* FA icons loaded via CDN — fallback hidden si non chargées */
-  display: inline-block;
+.service-card-icon.fab,
+.service-card-icon.fa,
+.service-card-icon.cordo-icon-remote-control {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: 1.3rem;
   text-align: center;
 }
@@ -1822,12 +1850,18 @@ div[id] {
 /* Titre principal centré (Section 1) */
 .cordo-main-title {
   font-family: var(--font-title);
-  color: var(--cordo-chocolate);
+  color: #715839;
   text-shadow: 0px 3px 0px #FFAE07;
   font-size: clamp(1.4rem, 2.5vw, 1.9rem);
   letter-spacing: 0.04em;
   margin: 0.5rem 0 0.25rem 0;
   text-align: center;
+}
+
+@media (max-width: 767px) {
+  .cordo-main-title {
+    font-size: 1.7rem;
+  }
 }
 
 /* Titres avec séparateurs pointillés (Sections 4, 9, 11, 13, 15) */
@@ -1869,7 +1903,14 @@ div[id] {
 
 /* Wood banners system with borders matching Elementor source */
 .cordo-wood-banner {
-  box-shadow: 7px 7px 0px 0px var(--cordo-chocolate);
+  background-color: #FFFFFF !important;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.35)),
+    url('/uploads/2023/03/6-board-4742447_640.jpg.png') !important;
+  background-repeat: repeat !important;
+  background-size: 320px auto !important;
+  background-position: top center !important;
+  box-shadow: 4px 4px 0px 0px var(--cordo-chocolate);
   margin: 0.75rem auto;
   border: 4px solid #4054B2;
   border-radius: 16px;
@@ -1954,7 +1995,7 @@ div[id] {
 
 .cordo-hero-card {
   background: rgba(251, 251, 251, 0.95);
-  border: 4px dotted #4054B2;
+  border: 4px dotted #C7804A;
   border-radius: 12px;
   padding: 0.75rem;
   box-shadow: 7px 7px 0px 0px var(--cordo-chocolate);
@@ -1962,6 +2003,10 @@ div[id] {
   align-items: center;
   justify-content: center;
   transition: transform var(--transition-fast);
+}
+
+.cordo-hero-card:nth-child(2) {
+  background: #FFFFFF;
 }
 
 .cordo-hero-card:hover {
@@ -1976,6 +2021,10 @@ div[id] {
   border-radius: 12px;
   box-shadow: 7px 7px 0px 0px var(--cordo-chocolate);
   display: block;
+}
+
+.cordo-hero-card:nth-child(2) .cordo-hero-img {
+  box-shadow: 8px 8px 0px 0px var(--cordo-chocolate);
 }
 
 /* 3. Section Accueil */
@@ -2039,7 +2088,7 @@ div[id] {
 
 .cordo-nouveau-line {
   flex: 1;
-  border-top: 2px dotted #715839;
+  border-top: 3px dotted #715839;
   height: 0;
 }
 
@@ -2053,7 +2102,7 @@ div[id] {
 .cordo-nouveau-title {
   font-family: var(--font-title);
   color: var(--cordo-chocolate);
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   letter-spacing: 0.05em;
   margin: 0;
   text-transform: uppercase;
@@ -2095,16 +2144,25 @@ div[id] {
 
 .cordo-pass-card-left {
   background: #FFFFFF;
-  border: 4px solid #4054B2;
+  border: 4px solid var(--cordo-caramel);
   border-radius: 10px;
   padding: 1.25rem 1rem;
   box-shadow: 7px 7px 0px 0px var(--cordo-chocolate);
 }
 
+.cordo-pass-carousel-wrap {
+  border: 4px dotted var(--cordo-caramel);
+  border-radius: 12px;
+  background: #FFFFFF;
+  padding: 0.5rem;
+  box-shadow: 7px 7px 0px 0px var(--cordo-chocolate);
+}
+
 .cordo-pass-title {
   font-family: var(--font-title);
-  color: var(--cordo-chocolate);
-  font-size: 1.25rem;
+  color: #000000;
+  text-shadow: 3px 1px 0px #FAFF00;
+  font-size: 1.6rem;
   margin-bottom: 0.75rem;
 }
 
@@ -2229,7 +2287,7 @@ div[id] {
 
 .cordo-horaires-card {
   background: #FFFFFF;
-  border: 4px solid #4054B2;
+  border: 4px solid var(--cordo-gold);
   border-radius: 10px;
   padding: 1.25rem 1rem;
   box-shadow: 7px 7px 0px 0px var(--cordo-chocolate);
@@ -2258,15 +2316,15 @@ div[id] {
 
 .cordo-horaires-schedule-card {
   background: #FFFFFF;
-  border: 4px solid #4054B2;
-  border-radius: 10px;
+  border: 6px solid var(--cordo-gold);
+  border-radius: 12px;
   overflow: hidden;
   box-shadow: 7px 7px 0px 0px var(--cordo-chocolate);
 }
 
 .cordo-horaires-map-card {
-  border: 4px solid #4054B2;
-  border-radius: 10px;
+  border: 7px solid var(--cordo-gold);
+  border-radius: 12px;
   overflow: hidden;
   box-shadow: 7px 7px 0px 0px var(--cordo-chocolate);
   background: #FFFFFF;
@@ -2302,9 +2360,9 @@ div[id] {
    -------------------------------------------------------------------------- */
 .cordo-pass-header-title {
   font-family: var(--font-title);
-  color: var(--cordo-gold);
-  text-shadow: 0px 2px 0px var(--cordo-chocolate);
-  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  color: #000000;
+  text-shadow: 3px 1px 0px #FAFF00;
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
   margin: 0;
   text-align: center;
 }

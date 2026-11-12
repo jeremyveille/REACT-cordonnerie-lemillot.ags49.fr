@@ -41,6 +41,47 @@ export interface SectionContainerProps {
 // 12 Services catalog from authoritative extracted JSON
 const servicesCatalog = (serviceModalsData as any).services || [];
 
+function getServiceLeftIcon(service: any): string {
+  if (
+    service.icon === 'icon icon-hosting1' ||
+    service.icon === 'fas fa-sliders' ||
+    service.slug === 'telecommandes' ||
+    service.id === 7 ||
+    service.icon === 'cordo-icon-remote-control'
+  ) {
+    return 'cordo-icon-remote-control';
+  }
+
+  switch (service.id) {
+    case 1:
+      return 'far fa-address-card';
+    case 2:
+      return 'fas fa-shoe-prints';
+    case 3:
+      return 'fas fa-id-badge';
+    case 4:
+      return 'fab fa-fantasy-flight-games';
+    case 5:
+      return 'fas fa-stamp';
+    case 6:
+      return 'fas fa-bag-shopping fa-shopping-bag';
+    case 8:
+      return 'far fa-square-minus fa-minus-square';
+    case 9:
+      return 'fas fa-print';
+    case 10:
+      return 'fas fa-key';
+    case 11:
+      return 'fas fa-pills fa-battery-full';
+    case 12:
+      return 'fas fa-car';
+    default:
+      if (service.icon === 'fas fa-shopping-bag') return 'fas fa-bag-shopping fa-shopping-bag';
+      if (service.icon === 'far fa-minus-square') return 'far fa-square-minus fa-minus-square';
+      return service.icon || 'far fa-address-card';
+  }
+}
+
 // Workshop gallery photos for Section 16 matching exact WordPress Elementor images
 const workshopPhotos = [
   {
@@ -237,11 +278,25 @@ export const SectionContainer: React.FC<SectionContainerProps> = ({
   else if (isWorkshopGallery) bannerModifierClass = 'cordo-banner-atelier cordo-wood-banner';
   else if (isKraftwebCredits) bannerModifierClass = 'cordo-banner-kraftweb';
 
+  const isWoodBanner = Boolean(bannerModifierClass && bannerModifierClass.includes('cordo-wood-banner'));
+  const isWoodPattern = Boolean(
+    isWoodBanner ||
+    (backgroundImage && (
+      backgroundImage.includes('board-') ||
+      backgroundImage.includes('6-board') ||
+      backgroundImage.includes('3-board') ||
+      backgroundImage.includes('02-board')
+    ))
+  );
+
   const sectionStyle: React.CSSProperties = {
-    backgroundColor: bgStyle,
-    backgroundImage: backgroundImage ? `url(${backgroundImage})` : undefined,
-    backgroundSize: backgroundImage ? 'cover' : undefined,
-    backgroundPosition: backgroundImage ? 'center' : undefined,
+    backgroundColor: bgStyle || (isWoodPattern ? '#FFFFFF' : undefined),
+    backgroundImage: isWoodPattern
+      ? `linear-gradient(rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.35)), url('/uploads/2023/03/6-board-4742447_640.jpg.png')`
+      : (backgroundImage ? `url(${backgroundImage})` : undefined),
+    backgroundRepeat: isWoodPattern ? 'repeat' : undefined,
+    backgroundSize: isWoodPattern ? '320px auto' : (backgroundImage ? 'cover' : undefined),
+    backgroundPosition: isWoodPattern ? 'top center' : (backgroundImage ? 'center' : undefined),
     padding: isSection3Spacer ? '0' : padding,
     margin: isSection3Spacer ? '0' : undefined,
     minHeight: isSection3Spacer ? 'auto' : undefined,
@@ -449,7 +504,7 @@ export const SectionContainer: React.FC<SectionContainerProps> = ({
                         title={`Consulter la galerie et les tarifs pour : ${service.title}`}
                         aria-label={`Consulter la galerie et les tarifs pour : ${service.title}`}
                       >
-                        <i className={service.icon === 'icon icon-hosting1' || service.icon === 'fas fa-sliders' || service.slug === 'telecommandes' || service.id === 7 ? 'cordo-icon-remote-control' : (service.icon || 'far fa-address-card')} aria-hidden="true"></i>
+                        <i className={`service-card-icon ${getServiceLeftIcon(service)}`} aria-hidden="true"></i>
                       </button>
 
                       {/* Button 2: Descriptif Modal */}
@@ -460,7 +515,7 @@ export const SectionContainer: React.FC<SectionContainerProps> = ({
                         title={`Consulter le descriptif détaillé pour : ${service.title}`}
                         aria-label={`Consulter le descriptif détaillé pour : ${service.title}`}
                       >
-                        <i className="far fa-list-alt" aria-hidden="true"></i>
+                        <i className="service-card-icon far fa-list-alt" aria-hidden="true"></i>
                       </button>
                     </div>
                   </div>

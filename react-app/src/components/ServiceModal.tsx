@@ -73,7 +73,7 @@ export const ServiceModal: React.FC = () => {
           <div className="cordo-modal-title-wrap">
             {service?.icon && <span className={`service-icon ${service.icon}`} />}
             <h2 id="service-modal-title" className="cordo-modal-title">
-              {activeModal.title || service?.title}
+              {service?.title || activeModal.title}
             </h2>
           </div>
 
