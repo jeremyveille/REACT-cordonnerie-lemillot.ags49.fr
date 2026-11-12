@@ -1903,13 +1903,13 @@ div[id] {
 
 /* Wood banners system with borders matching Elementor source */
 .cordo-wood-banner {
-  background-color: #FFFFFF !important;
+  background-color: #FFFFFF;
   background-image: 
     linear-gradient(rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.35)),
-    url('/uploads/2023/03/6-board-4742447_640.jpg.png') !important;
-  background-repeat: repeat !important;
-  background-size: 320px auto !important;
-  background-position: top center !important;
+    url('/uploads/2023/03/6-board-4742447_640.jpg.png');
+  background-repeat: repeat;
+  background-size: 320px auto;
+  background-position: top center;
   box-shadow: 4px 4px 0px 0px var(--cordo-chocolate);
   margin: 0.75rem auto;
   border: 4px solid #4054B2;

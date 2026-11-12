@@ -41,6 +41,34 @@ export interface SectionContainerProps {
 // 12 Services catalog from authoritative extracted JSON
 const servicesCatalog = (serviceModalsData as any).services || [];
 
+// Default wood textured images matching original WordPress Elementor sections
+const DEFAULT_SECTION_WOOD_IMAGES: Record<number, string> = {
+  2: '/uploads/2023/03/3-board-4742447_640.jpg',
+  5: '/uploads/2023/03/3-board-4742447_640.jpg',
+  7: '/uploads/2023/03/02-board-4742447_640.jpg',
+  8: '/uploads/2023/03/3-board-4742447_640.jpg',
+  10: '/uploads/2023/03/6-board-4742447_640.jpg.png',
+  12: '/uploads/2023/03/6-board-4742447_640.jpg.png',
+  14: '/uploads/2023/03/6-board-4742447_640.jpg.png',
+  16: '/uploads/2023/03/6-board-4742447_640.jpg.png',
+};
+
+const DEFAULT_SECTION_ID_WOOD_IMAGES: Record<string, string> = {
+  '1a8c21f2': '/uploads/2023/03/3-board-4742447_640.jpg',
+  '709da48': '/uploads/2023/03/3-board-4742447_640.jpg',
+  '32866da': '/uploads/2023/03/02-board-4742447_640.jpg',
+  'a81e56d': '/uploads/2023/03/3-board-4742447_640.jpg',
+  '5eb5ef5': '/uploads/2023/03/6-board-4742447_640.jpg.png',
+  '567d42e': '/uploads/2023/03/6-board-4742447_640.jpg.png',
+  '6359f90': '/uploads/2023/03/6-board-4742447_640.jpg.png',
+  'de826f5': '/uploads/2023/03/6-board-4742447_640.jpg.png',
+};
+
+function normalizeUploadUrl(url?: string): string | undefined {
+  if (!url) return undefined;
+  return url.replace(/^https?:\/\/[^/]+\/wp-content\/uploads\//, '/uploads/');
+}
+
 function getServiceLeftIcon(service: any): string {
   if (
     service.icon === 'icon icon-hosting1' ||
@@ -279,24 +307,47 @@ export const SectionContainer: React.FC<SectionContainerProps> = ({
   else if (isKraftwebCredits) bannerModifierClass = 'cordo-banner-kraftweb';
 
   const isWoodBanner = Boolean(bannerModifierClass && bannerModifierClass.includes('cordo-wood-banner'));
+
+  // Normalize configured background image URL to local relative path
+  const configuredImage = normalizeUploadUrl(backgroundImage);
+
+  // Authoritative default wood image fallback if not explicitly provided
+  const defaultWoodImage =
+    (id && DEFAULT_SECTION_ID_WOOD_IMAGES[id]) ||
+    (sectionIndex && DEFAULT_SECTION_WOOD_IMAGES[sectionIndex]) ||
+    (isWoodBanner ? '/uploads/2023/03/6-board-4742447_640.jpg.png' : undefined);
+
+  // Explicit backgroundImage takes precedence over fallback defaults
+  const activeImage = configuredImage || defaultWoodImage;
+
+  // Determine if activeImage or section should be treated as a wood textured pattern
   const isWoodPattern = Boolean(
     isWoodBanner ||
-    (backgroundImage && (
-      backgroundImage.includes('board-') ||
-      backgroundImage.includes('6-board') ||
-      backgroundImage.includes('3-board') ||
-      backgroundImage.includes('02-board')
+    (activeImage && (
+      activeImage.includes('board-') ||
+      activeImage.includes('6-board') ||
+      activeImage.includes('3-board') ||
+      activeImage.includes('02-board') ||
+      activeImage.includes('01-board') ||
+      activeImage.includes('1-board')
     ))
   );
 
+  let computedBackgroundImage: string | undefined;
+  if (activeImage) {
+    if (isWoodPattern) {
+      computedBackgroundImage = `linear-gradient(rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.35)), url('${activeImage}')`;
+    } else {
+      computedBackgroundImage = `url('${activeImage}')`;
+    }
+  }
+
   const sectionStyle: React.CSSProperties = {
     backgroundColor: bgStyle || (isWoodPattern ? '#FFFFFF' : undefined),
-    backgroundImage: isWoodPattern
-      ? `linear-gradient(rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.35)), url('/uploads/2023/03/6-board-4742447_640.jpg.png')`
-      : (backgroundImage ? `url(${backgroundImage})` : undefined),
-    backgroundRepeat: isWoodPattern ? 'repeat' : undefined,
-    backgroundSize: isWoodPattern ? '320px auto' : (backgroundImage ? 'cover' : undefined),
-    backgroundPosition: isWoodPattern ? 'top center' : (backgroundImage ? 'center' : undefined),
+    backgroundImage: computedBackgroundImage,
+    backgroundRepeat: isWoodPattern ? 'repeat' : (activeImage ? 'no-repeat' : undefined),
+    backgroundSize: isWoodPattern ? '320px auto' : (activeImage ? 'cover' : undefined),
+    backgroundPosition: isWoodPattern ? 'top center' : (activeImage ? 'center' : undefined),
     padding: isSection3Spacer ? '0' : padding,
     margin: isSection3Spacer ? '0' : undefined,
     minHeight: isSection3Spacer ? 'auto' : undefined,
