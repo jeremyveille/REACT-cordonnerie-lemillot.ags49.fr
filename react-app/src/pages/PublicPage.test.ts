@@ -78,11 +78,11 @@ test('Section 10: Renders the 12 service cards with dual buttons', () => {
   assert.ok(html.includes('cordo-btn-desc'), 'Must render Descriptif button');
 });
 
-test('Section 10: Telecommandes service renders sliders icon and not legacy icon-hosting1', () => {
+test('Section 10: Telecommandes service renders remote-control icon and not legacy icon-hosting1', () => {
   const services = (serviceModalsData as any).services || [];
   const telecommandes = services.find((s: any) => s.slug === 'telecommandes' || s.id === 7);
   assert.ok(telecommandes, 'Telecommandes service must exist');
-  assert.strictEqual(telecommandes.icon, 'fas fa-sliders', 'Telecommandes icon must be fas fa-sliders in service catalog');
+  assert.strictEqual(telecommandes.icon, 'cordo-icon-remote-control', 'Telecommandes icon must be cordo-icon-remote-control in service catalog');
 
   const html = renderToStaticMarkup(
     React.createElement(
@@ -93,7 +93,7 @@ test('Section 10: Telecommandes service renders sliders icon and not legacy icon
   );
 
   assert.ok(html.includes('Télécommandes'), 'Must render Télécommandes card');
-  assert.ok(html.includes('fas fa-sliders'), 'Must render sliders icon for telecommandes');
+  assert.ok(html.includes('cordo-icon-remote-control'), 'Must render remote-control icon for telecommandes');
   assert.ok(!html.includes('icon-hosting1'), 'Must not render unmapped icon-hosting1');
   assert.ok(html.includes('far fa-list-alt'), 'Right button must still render far fa-list-alt');
 });

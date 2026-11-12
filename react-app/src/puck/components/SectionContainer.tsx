@@ -449,7 +449,7 @@ export const SectionContainer: React.FC<SectionContainerProps> = ({
                         title={`Consulter la galerie et les tarifs pour : ${service.title}`}
                         aria-label={`Consulter la galerie et les tarifs pour : ${service.title}`}
                       >
-                        <i className={service.icon === 'icon icon-hosting1' || !service.icon ? 'fas fa-sliders' : service.icon} aria-hidden="true"></i>
+                        <i className={service.icon === 'icon icon-hosting1' || service.icon === 'fas fa-sliders' || service.slug === 'telecommandes' || service.id === 7 ? 'cordo-icon-remote-control' : (service.icon || 'far fa-address-card')} aria-hidden="true"></i>
                       </button>
 
                       {/* Button 2: Descriptif Modal */}

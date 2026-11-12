@@ -1176,6 +1176,22 @@ div[id] {
   transform: scale(1.08);
 }
 
+.cordo-icon-remote-control {
+  display: inline-block;
+  width: 19px;
+  height: 19px;
+  background-color: currentColor;
+  -webkit-mask-image: url('/icons/remote-control.png');
+  mask-image: url('/icons/remote-control.png');
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  vertical-align: middle;
+}
+
 /* --------------------------------------------------------------------------
    Dual Modal System (ServiceModal)
    -------------------------------------------------------------------------- */
