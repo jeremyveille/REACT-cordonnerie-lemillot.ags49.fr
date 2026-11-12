@@ -73,6 +73,89 @@ test('Tier 1 - Feature 1: Fond Rayé (Striped Background) parameters and uniform
   });
 });
 
+test('Tier 1 - Feature 1.1: Wood background textures fidelity (3-board, 02-board, 6-board) and specificity conflict resolution', () => {
+  // Verify CSS specificity: .cordo-wood-banner must NOT use !important on background properties
+  const woodBannerBlock = indexCss.match(/\.cordo-wood-banner\s*\{([^}]+)\}/);
+  assert.ok(woodBannerBlock, '.cordo-wood-banner block must exist in index.css');
+  const woodProps = woodBannerBlock[1];
+  assert.ok(!woodProps.includes('background-image:') || !woodProps.includes('!important'), 'No !important on background in .cordo-wood-banner');
+  assert.ok(!woodProps.includes('background-repeat: repeat !important'), 'No !important on background-repeat in .cordo-wood-banner');
+  assert.ok(!woodProps.includes('background-size: 320px auto !important'), 'No !important on background-size in .cordo-wood-banner');
+
+  // Verify Sections 2, 5, 8 render 3-board-4742447_640.jpg
+  [2, 5, 8].forEach((idx) => {
+    const html = renderToStaticMarkup(
+      React.createElement(
+        ModalProvider,
+        null,
+        React.createElement(SectionContainer, { sectionIndex: idx })
+      )
+    );
+    assert.ok(
+      html.includes('3-board-4742447_640.jpg'),
+      `SectionIndex ${idx} must render 3-board-4742447_640.jpg texture`
+    );
+  });
+
+  // Verify Section 7 renders 02-board-4742447_640.jpg
+  const sec7Html = renderToStaticMarkup(
+    React.createElement(
+      ModalProvider,
+      null,
+      React.createElement(SectionContainer, { sectionIndex: 7 })
+    )
+  );
+  assert.ok(
+    sec7Html.includes('02-board-4742447_640.jpg'),
+    'SectionIndex 7 must render 02-board-4742447_640.jpg texture'
+  );
+
+  // Verify Section 10 renders 6-board-4742447_640.jpg.png
+  const sec10Html = renderToStaticMarkup(
+    React.createElement(
+      ModalProvider,
+      null,
+      React.createElement(SectionContainer, { sectionIndex: 10 })
+    )
+  );
+  assert.ok(
+    sec10Html.includes('6-board-4742447_640.jpg.png'),
+    'SectionIndex 10 must render 6-board-4742447_640.jpg.png texture'
+  );
+
+  // Verify explicitly configured backgroundImage takes precedence
+  const customBgHtml = renderToStaticMarkup(
+    React.createElement(
+      ModalProvider,
+      null,
+      React.createElement(SectionContainer, {
+        sectionIndex: 2,
+        backgroundImage: '/uploads/custom-texture.jpg',
+      })
+    )
+  );
+  assert.ok(
+    customBgHtml.includes('/uploads/custom-texture.jpg'),
+    'Custom backgroundImage prop must take precedence over default section texture'
+  );
+
+  // Verify remote WordPress upload URLs are converted to local relative paths
+  const remoteUrlHtml = renderToStaticMarkup(
+    React.createElement(
+      ModalProvider,
+      null,
+      React.createElement(SectionContainer, {
+        backgroundImage: 'https://cordonnerie-lemillot.ags49.fr/wp-content/uploads/2023/03/3-board-4742447_640.jpg',
+      })
+    )
+  );
+  assert.ok(
+    remoteUrlHtml.includes('/uploads/2023/03/3-board-4742447_640.jpg') &&
+    !remoteUrlHtml.includes('https://cordonnerie-lemillot.ags49.fr/wp-content/uploads/'),
+    'Remote WordPress upload URL must be normalized to local path'
+  );
+});
+
 test('Tier 1 - Feature 2: Service Cards Container & Shadows', () => {
   // Test section 10 renders 12 service cards inside the grid
   const html = renderToStaticMarkup(
