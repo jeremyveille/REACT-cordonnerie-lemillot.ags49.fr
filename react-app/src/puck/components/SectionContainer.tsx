@@ -234,8 +234,17 @@ export const SectionContainer: React.FC<SectionContainerProps> = ({
   else if (backgroundColor === 'creme') bgStyle = 'var(--cordo-cream)';
   else if (backgroundColor === 'fond' || backgroundColor === '#FCFCFC') bgStyle = 'var(--cordo-bg)';
 
+  // Specific section checks
+  const isMainTitle = sectionIndex === 1 || id === '25eb05f';
+  const isHeroBanner = sectionIndex === 2 || id === '1a8c21f2';
+  const isAccueilContent = sectionIndex === 5 || id === '709da48';
+
   const containerClass =
-    maxWidth === 'container-narrow'
+    isHeroBanner
+      ? 'container cordo-hero-container'
+      : isAccueilContent
+      ? 'container cordo-accueil-container'
+      : maxWidth === 'container-narrow'
       ? 'container-narrow'
       : maxWidth === 'full'
       ? 'container-full'
@@ -275,11 +284,8 @@ export const SectionContainer: React.FC<SectionContainerProps> = ({
   }
 
   // Specific section checks
-  const isMainTitle = sectionIndex === 1 || id === '25eb05f';
-  const isHeroBanner = sectionIndex === 2 || id === '1a8c21f2';
   const isSection3Spacer = sectionIndex === 3 || id === 'd79fdba';
   const isAccueilTitle = sectionIndex === 4 || id === '0e42f5c';
-  const isAccueilContent = sectionIndex === 5 || id === '709da48';
   const isNouveauTitle = sectionIndex === 6 || id === 'b251543';
   const isPassSanitaireTitle = sectionIndex === 7 || id === '32866da';
   const isPassSanitaireContent = sectionIndex === 8 || id === 'a81e56d';
@@ -336,7 +342,12 @@ export const SectionContainer: React.FC<SectionContainerProps> = ({
   let computedBackgroundImage: string | undefined;
   if (activeImage) {
     if (isWoodPattern) {
-      computedBackgroundImage = `linear-gradient(rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.35)), url('${activeImage}')`;
+      if (isAccueilContent) {
+        // Section 5 ACCUEIL displays raw 3-board wood texture without 35% white wash for high contrast
+        computedBackgroundImage = `url('${activeImage}')`;
+      } else {
+        computedBackgroundImage = `linear-gradient(rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.35)), url('${activeImage}')`;
+      }
     } else {
       computedBackgroundImage = `url('${activeImage}')`;
     }
@@ -366,7 +377,7 @@ export const SectionContainer: React.FC<SectionContainerProps> = ({
       <div className={containerClass}>
         {/* SECTION 1: Titre Principal centré */}
         {isMainTitle ? (
-          <div style={{ textAlign: 'center', margin: '0.25rem 0' }}>
+          <div className="cordo-main-title-wrap">
             <h1 className="cordo-main-title">CORDONNERIE  '' LE MILLOT ''</h1>
             <DropZone zone="content" />
           </div>
@@ -405,7 +416,7 @@ export const SectionContainer: React.FC<SectionContainerProps> = ({
           </div>
         ) : isAccueilTitle ? (
           /* SECTION 4: Titre ACCUEIL (Ligne pointillée - ACCUEIL - Ligne pointillée) */
-          <div className="cordo-title-banner-row">
+          <div className="cordo-title-banner-row cordo-title-banner-accueil">
             <div className="cordo-title-banner-line" />
             <h2 className="cordo-title-banner-text">ACCUEIL</h2>
             <div className="cordo-title-banner-line" />
@@ -423,7 +434,7 @@ export const SectionContainer: React.FC<SectionContainerProps> = ({
                 />
               </div>
               <div className="cordo-accueil-card">
-                <p style={{ color: '#800000', fontSize: '1.05rem', lineHeight: '1.6', margin: 0 }}>
+                <p>
                   Vous pouvez me retrouver dans la <strong>galerie marchande</strong> de votre{' '}
                   <strong>
                     <span style={{ color: '#000000' }}>Inter</span>
@@ -432,7 +443,7 @@ export const SectionContainer: React.FC<SectionContainerProps> = ({
                   </strong>{' '}
                   à <strong>Angers</strong>.
                 </p>
-                <p style={{ color: '#800000', fontSize: '1.05rem', lineHeight: '1.6', marginTop: '1rem', marginBottom: 0 }}>
+                <p>
                   Profitez de vos courses pour passer à mon Atelier !
                 </p>
               </div>
